@@ -22,7 +22,7 @@ _BUILDING_RE = re.compile(r"^([A-Za-z]+)\s*(.*)$")
 _LEADING_INT_RE = re.compile(r"^(\d+)")
 _CLASS_NAME_RE = re.compile(r"^(.*?)\(([^()]*)\)\s*$")
 
-SKIPPED_BUILDINGS = {"HCA", "EBEN"}
+SKIPPED_BUILDINGS = {"HCA"}
 _ANH_AUDITORIUM_ROOM_NUMBER = 0
 
 
