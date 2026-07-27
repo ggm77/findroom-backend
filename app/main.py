@@ -3,6 +3,8 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.api.v1.emptyrooms import router as emptyrooms_router
+from app.api.v1.rooms import router as rooms_router
 from app.services.timetable_store import timetable_store
 
 
@@ -21,6 +23,9 @@ app.add_middleware(
     allow_methods=["GET"],
     allow_headers=["*"],
 )
+
+app.include_router(rooms_router)
+app.include_router(emptyrooms_router)
 
 @app.get("/ping")
 async def ping():
