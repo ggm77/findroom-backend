@@ -1,12 +1,12 @@
 from datetime import time as _time
 
-from app.core.schedule import period_at
+from app.core.schedule import occupancy_period_at
 from app.schemas.room import RoomResponse
 from app.services.timetable_store import timetable_store
 
 
 def get_room_status(buildingName: str, roomNumber: int, dayOfWeek: int, time: _time) -> RoomResponse:
-    period = period_at(time, timetable_store.max_period)
+    period = occupancy_period_at(time, timetable_store.max_period)
     offering = (
         timetable_store.offering_at(buildingName, roomNumber, dayOfWeek, period)
         if period is not None

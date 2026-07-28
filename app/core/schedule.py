@@ -22,3 +22,21 @@ def period_at(target: time, max_period: int) -> int | None:
         if start <= target < end:
             return period
     return None
+
+
+def occupancy_period_at(target: time, max_period: int) -> int | None:
+    """강의실 점유 판단에 사용할 교시를 반환한다.
+
+    쉬는 시간에는 직전 교시가 강의실을 계속 점유하고 있는 것으로 간주해
+    직전 교시 번호를 반환한다. 첫 교시 시작 전이거나 마지막 교시가 끝난
+    이후에는 점유 중인 교시가 없으므로 None을 반환한다.
+    """
+    previous_period: int | None = None
+    for period in range(1, max_period + 1):
+        start, end = period_bounds(period)
+        if target < start:
+            return previous_period
+        if target < end:
+            return period
+        previous_period = period
+    return None
